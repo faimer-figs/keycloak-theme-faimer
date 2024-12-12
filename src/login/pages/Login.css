@@ -6,6 +6,8 @@
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    font-family: poppins, sans-serif;
+    font-size: 14px !important;
 }
 
 .KcHeaderClass, .kcHeaderWrapperClass {

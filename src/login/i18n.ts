@@ -7,9 +7,7 @@ const { useI18n, ofTypeI18n } = i18nBuilder
     .withCustomTranslations({
         en: {
             "doLogIn": "Log in",
-        },
-        es: {
-            "doLogIn": "Log in",
+            "doForgotPassword": "Lost password?",
         }
     })
     .build();
