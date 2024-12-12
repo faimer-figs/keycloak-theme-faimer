@@ -7,7 +7,10 @@ export default defineConfig({
     plugins: [
         react(),
         keycloakify({
-            accountThemeImplementation: "none"
+            accountThemeImplementation: "none",
+            keycloakifyBuildDirPath: "./build_theme",
+            groupId: "com.ozonehis",
+            artifactId: "ozone-faimer-keycloak-theme"
         })
     ]
 });
