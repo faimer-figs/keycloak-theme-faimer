@@ -8,15 +8,6 @@
     <artifactId>ozone-faimer-keycloak-theme</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <ozone.artifactId>ozone</ozone.artifactId>
-        <ozone.groupId>com.ozonehis</ozone.groupId>
-        <ozone.version>1.0.0-SNAPSHOT</ozone.version>
-        <ozone-scripts.version>1.0.0-SNAPSHOT</ozone-scripts.version>
-    </properties>
-
     <build>
         <finalName>/${project.artifactId}-${project.version}</finalName>
         <plugins>
