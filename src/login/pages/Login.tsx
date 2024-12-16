@@ -5,7 +5,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import logo from "../../assets/faimer-logo.png";
+import logo from "../../assets/faimer-logo.jpg";
 
 import "./Login.css";
 
