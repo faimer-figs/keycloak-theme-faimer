@@ -14,7 +14,7 @@
       <outputDirectory>.</outputDirectory>
       <directory>${project.basedir}/build_theme</directory>
       <includes>
-        <include>keycloak-theme-for-kc-22-to-25.jar</include>
+        <include>*.jar</include>
       </includes>
     </fileSet>
   </fileSets>

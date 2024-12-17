@@ -10,7 +10,11 @@ export default defineConfig({
             accountThemeImplementation: "none",
             keycloakifyBuildDirPath: "./build_theme",
             groupId: "com.ozonehis",
-            artifactId: "ozone-faimer-keycloak-theme"
+            artifactId: "keycloak-theme-faimer",
+            keycloakVersionTargets: {
+                "22-to-25": "keycloak-theme-faimer-22-1.0.0-SNAPSHOT.jar",
+                "all-other-versions": false
+            }
         })
     ]
 });
