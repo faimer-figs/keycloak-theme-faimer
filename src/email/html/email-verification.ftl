@@ -9,7 +9,7 @@
     <p>${msg("emailVerificationIgnore")}</p>
 
     <p>
-        <strong style="color: #31355a">${msg("organizationName")}</strong><br/>
+        <strong style="color: #31355a">${msg("organizationName")} - </strong>
         <em style="color: #31355a">${msg("organizationTagline")}</em><br/>
         <a href="mailto:${msg('organizationEmail')}" style="color: #2e7d32; text-decoration: underline;">${msg("organizationEmail")}</a>
     </p>
