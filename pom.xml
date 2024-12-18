@@ -9,6 +9,17 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <repositories>
+        <repository>
+            <id>mks-nexus-public</id>
+            <url>https://nexus.mekomsolutions.net/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>mks-nexus-private</id>
+            <url>https://nexus.mekomsolutions.net/repository/maven-private/</url>
+        </repository>
+    </repositories>
+
     <build>
         <finalName>/${project.artifactId}-${project.version}</finalName>
         <plugins>
@@ -64,4 +75,17 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>mks-nexus-public-releases</id>
+            <name>Mekom Solutions Nexus repo for releases</name>
+            <url>https://nexus.mekomsolutions.net/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>mks-nexus-public-snapshots</id>
+            <name>Mekom Solutions Nexus repo for snapshots</name>
+            <url>https://nexus.mekomsolutions.net/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
