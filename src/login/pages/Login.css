@@ -32,7 +32,7 @@
 
     .logo {
         width: 100%;
-        margin-bottom: 4em;
+        margin-bottom: 2em;
         align-self: center;
     }
 
@@ -133,7 +133,7 @@
     }
 
 }
-
+  
 @media (max-width: 600px) {
     .kcBodyClass {
         background: unset !important;
@@ -146,3 +146,68 @@
         padding: 0 1em !important;
     }
 }
+
+.policy-overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding-top: 14px;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    z-index: 1000;
+  }
+
+  #policy-toggle:checked ~ .policy-overlay {
+    display: block;
+  }
+  
+  .policy-close {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: rgb(88, 88, 88);
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    background: transparent;
+    padding: 5px;
+  }
+
+  .policy-overlay a {
+    color:white;
+    text-decoration: underline;
+    margin: 0 5px;
+  }
+  
+  .policy-continue {
+    background: transparent;
+    color: #f6a21d;
+    border: none;
+    outline: none;
+    padding-top: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+
+    &:hover {
+        background: transparent;
+        border: none;
+        outline: none;
+        text-decoration: underline;
+    }
+
+    &:active {
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+  }
+  
+  .policy-text {
+    margin: 0;
+    line-height: 14px;
+  }

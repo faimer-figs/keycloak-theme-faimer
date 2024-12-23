@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { clsx } from "keycloakify/tools/clsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
@@ -23,7 +23,20 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
     const [isCookiesModalOpen, setIsCookiesModalOpen] = useState(false);
+    const [showPolicyOverlay, setShowPolicyOverlay] = useState(false);
 
+    useEffect(() => {
+      const hasAgreed = JSON.parse(localStorage.getItem('policyAgreement') || 'false');
+      if (!hasAgreed) {
+        setShowPolicyOverlay(true);
+      }
+    }, []);
+  
+    const handlePolicyAccept = (acceptted: boolean = true) => {
+      localStorage.setItem('policyAgreement', acceptted.toString());
+      setShowPolicyOverlay(false);
+    };
+    
     const toggleCookiesModal = () => {
         setIsCookiesModalOpen((prev) => !prev);
     };
@@ -131,18 +144,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                 )}
                             </div>
 
-                            <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
-                                <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                                    {realm.resetPasswordAllowed && (
-                                        <span>
-                                            <a tabIndex={6} href={url.loginResetCredentialsUrl}>
-                                                {msg("doForgotPassword")}
-                                            </a>
-                                        </span>
-                                    )}
-                                </div>
-                            </div>
-
                             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
                                 <input type="hidden" id="id-hidden-input" name="credentialId"
                                        value={auth.selectedCredential} />
@@ -155,6 +156,18 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                     type="submit"
                                     value={msgStr("doLogIn")}
                                 />
+                            </div>
+
+                            <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
+                                <div className={kcClsx("kcFormOptionsWrapperClass")}>
+                                    {realm.resetPasswordAllowed && (
+                                        <span>
+                                            <a tabIndex={6} href={url.loginResetCredentialsUrl}>
+                                                {msg("doForgotPassword")}
+                                            </a>
+                                        </span>
+                                    )}
+                                </div>
                             </div>
                         </form>
                     )}
@@ -206,6 +219,22 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                             OK
                         </button>
                     </div>
+                </div>
+            )}
+
+            <input type="checkbox" id="policy-toggle" checked style={{ display: "none" }} />
+            {showPolicyOverlay && (
+                <div className="policy-overlay">
+                    <label htmlFor="policy-toggle" className="policy-close" onClick={() => handlePolicyAccept(false)}>×</label>
+                    <div className="policy-text">
+                        If you continue browsing this website, you agree to our policies:
+                        <br/>
+                        <a href="/terms">Terms and Conditions</a>|
+                        <a href="/privacy">Privacy Notice</a>
+                    </div>
+                    <label htmlFor="policy-toggle">
+                        <button className="policy-continue" onClick={() => handlePolicyAccept()}>Continue</button>
+                    </label>
                 </div>
             )}
         </Template>
