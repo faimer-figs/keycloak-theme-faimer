@@ -8,6 +8,8 @@ import type { I18n } from "../i18n";
 import logo from "../../assets/faimer-logo.jpg";
 
 import "./Login.css";
+import PrivacyNotice from "./components/PrivacyNotice";
+import TermsAndConditions from "./components/TermsAndConditions.tsx";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -24,6 +26,8 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
     const [isCookiesModalOpen, setIsCookiesModalOpen] = useState(false);
     const [showPolicyOverlay, setShowPolicyOverlay] = useState(false);
+    const [showPolicyNoticeModal, setShowPolicyNoticeModal] = useState(false);
+    const [showTermsAndConditionsModal, setShowTermsAndConditionsModal] = useState(false);
 
     useEffect(() => {
       const hasAgreed = JSON.parse(localStorage.getItem('policyAgreement') || 'false');
@@ -31,12 +35,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
         setShowPolicyOverlay(true);
       }
     }, []);
-  
+
     const handlePolicyAccept = (acceptted: boolean = true) => {
       localStorage.setItem('policyAgreement', acceptted.toString());
       setShowPolicyOverlay(false);
+      setShowTermsAndConditionsModal(false);
+      setShowPolicyNoticeModal(false);
     };
-    
+
     const toggleCookiesModal = () => {
         setIsCookiesModalOpen((prev) => !prev);
     };
@@ -229,14 +235,20 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                     <div className="policy-text">
                         If you continue browsing this website, you agree to our policies:
                         <br/>
-                        <a href="/terms">Terms and Conditions</a>|
-                        <a href="/privacy">Privacy Notice</a>
+                        <button className="policiy-button underline" onClick={() => setShowTermsAndConditionsModal(true)}>
+                            Terms and Conditions
+                        </button>|
+                        <button className="policy-button underline" onClick={() => setShowPolicyNoticeModal(true)}>
+                            Privacy Notice
+                        </button>
                     </div>
                     <label htmlFor="policy-toggle">
                         <button className="policy-continue" onClick={() => handlePolicyAccept()}>Continue</button>
                     </label>
                 </div>
             )}
+            {showPolicyNoticeModal && (<PrivacyNotice onClose={() => setShowPolicyNoticeModal(false)} />)}
+            {showTermsAndConditionsModal && (<TermsAndConditions onClose={() => setShowTermsAndConditionsModal(false)} />)}
         </Template>
     );
 }
