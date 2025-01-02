@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { clsx } from "keycloakify/tools/clsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import logo from "../../assets/faimer-logo.jpg";
-
-import "./Login.css";
-import PrivacyNotice from "./components/PrivacyNotice";
-import TermsAndConditions from "./components/TermsAndConditions.tsx";
 import HelpPopup from "./components/HelpPopup.tsx";
+import PolicyOverlay from "./components/PolicyOverlay.tsx";
+import logo from "../../assets/faimer-logo.jpg";
+import "./styles.css";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -26,26 +24,9 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
     const [isCookiesModalOpen, setIsCookiesModalOpen] = useState(false);
-    const [showPolicyOverlay, setShowPolicyOverlay] = useState(false);
-    const [showPolicyNoticeModal, setShowPolicyNoticeModal] = useState(false);
-    const [showTermsAndConditionsModal, setShowTermsAndConditionsModal] = useState(false);
-
-    useEffect(() => {
-      const hasAgreed = JSON.parse(localStorage.getItem('policyAgreement') || 'false');
-      if (!hasAgreed) {
-        setShowPolicyOverlay(true);
-      }
-    }, []);
-
-    const handlePolicyAccept = (acceptted: boolean = true) => {
-      localStorage.setItem('policyAgreement', acceptted.toString());
-      setShowPolicyOverlay(false);
-      setShowTermsAndConditionsModal(false);
-      setShowPolicyNoticeModal(false);
-    };
 
     const toggleCookiesModal = () => {
-        setIsCookiesModalOpen((prev) => !prev);
+        setIsCookiesModalOpen(prev => !prev);
     };
 
     return (
@@ -55,7 +36,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             doUseDefaultCss={doUseDefaultCss}
             classes={classes}
             displayMessage={!messagesPerField.existsError("username", "password")}
-            headerNode={msg("loginAccountTitle")}
+            headerNode={<img src={logo} alt="Logo" className="logo" />}
             socialProvidersNode={
                 <>
                     {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
@@ -90,7 +71,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
         >
             <div id="kc-form">
                 <div id="kc-form-wrapper">
-                    <img src={logo} alt="Logo" className="logo" />
                     {realm.password && (
                         <form
                             id="kc-form-login"
@@ -152,8 +132,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                             </div>
 
                             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-                                <input type="hidden" id="id-hidden-input" name="credentialId"
-                                       value={auth.selectedCredential} />
+                                <input type="hidden" id="id-hidden-input" name="credentialId" value={auth.selectedCredential} />
                                 <input
                                     tabIndex={7}
                                     disabled={isLoginButtonDisabled}
@@ -179,10 +158,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         </form>
                     )}
                     <div className="divider" />
-                    <button
-                        className="cookies-button"
-                        onClick={toggleCookiesModal}
-                    >
+                    <button className="cookies-button" onClick={toggleCookiesModal}>
                         Cookies Policy
                     </button>
                 </div>
@@ -190,66 +166,32 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             {isCookiesModalOpen && (
                 <div className="modal-overlay">
                     <div className="cookies-modal">
-                        <button
-                            className="modal-close-button"
-                            onClick={toggleCookiesModal}
-                        >
+                        <button className="modal-close-button" onClick={toggleCookiesModal}>
                             ×
                         </button>
                         <h2>Cookies must be enabled in your browser</h2>
                         <div className="divider" />
-                        <h4>
-                            Two cookies are used on this site:
-                        </h4>
+                        <h4>Two cookies are used on this site:</h4>
                         <ul>
                             <li>
-                                The essential one is the session cookie,
-                                usually called MoodleSession.
-                                This must be allowed to remain logged in when
-                                browsing the site. It is destroyed when you log
-                                out or close the browser.
+                                The essential one is the session cookie, usually called MoodleSession. This must be allowed to remain logged in when
+                                browsing the site. It is destroyed when you log out or close the browser.
                             </li>
-                            <li style={{ marginTop: '.5em'}}>
-                                The other cookie is for convenience, usually
-                                called MOODLEID. It remembers
-                                your username in the browser, pre-filling the
-                                login form. You can refuse this cookie but will
-                                need to re-enter your username each time.
+                            <li style={{ marginTop: ".5em" }}>
+                                The other cookie is for convenience, usually called MOODLEID. It remembers your username in the browser, pre-filling
+                                the login form. You can refuse this cookie but will need to re-enter your username each time.
                             </li>
                         </ul>
                         <div className="divider" />
 
-                        <button
-                            className="modal-ok-button"
-                            onClick={toggleCookiesModal}
-                        >
+                        <button className="modal-ok-button" onClick={toggleCookiesModal}>
                             OK
                         </button>
                     </div>
                 </div>
             )}
 
-            <input type="checkbox" id="policy-toggle" checked style={{ display: "none" }} />
-            {showPolicyOverlay && (
-                <div className="policy-overlay">
-                    <label htmlFor="policy-toggle" className="policy-close" onClick={() => handlePolicyAccept(false)}>×</label>
-                    <div className="policy-text">
-                        If you continue browsing this website, you agree to our policies:
-                        <br/>
-                        <button className="policiy-button underline" onClick={() => setShowTermsAndConditionsModal(true)}>
-                            Terms and Conditions
-                        </button>, &nbsp;
-                        <button className="policy-button underline" onClick={() => setShowPolicyNoticeModal(true)}>
-                            Privacy Notice
-                        </button>
-                    </div>
-                    <label htmlFor="policy-toggle">
-                        <button className="policy-continue" onClick={() => handlePolicyAccept()}>Continue</button>
-                    </label>
-                </div>
-            )}
-            {showPolicyNoticeModal && (<PrivacyNotice onClose={() => setShowPolicyNoticeModal(false)} />)}
-            {showTermsAndConditionsModal && (<TermsAndConditions onClose={() => setShowTermsAndConditionsModal(false)} />)}
+            <PolicyOverlay />
             <HelpPopup />
         </Template>
     );

@@ -1,0 +1,99 @@
+.kcBodyClass {
+    background-image: url("../assets/health-care-team.png") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    height: 100vh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-family: poppins, sans-serif;
+    font-size: 14px !important;
+}
+
+.kcHeaderWrapperClass {
+    display: none;
+}
+
+.kcFormCardClass {
+    width: 30vw;
+    min-width: 540px;
+    height: 98%;
+    background-color: white;
+    padding: 1.5em !important;
+    box-shadow: 0.5em 0 1em rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    border: none;
+}
+
+.kcFormCardClass {
+    .logo {
+        width: 100%;
+        margin-bottom: 2em;
+        align-self: center;
+    }
+
+    .kcInputClass {
+        border: 0.1em solid #3f4373;
+        width: 100%;
+        padding: 0.5em;
+        margin-bottom: 1em;
+    }
+
+    .kcButtonClass {
+        width: 100%;
+        padding: 12px;
+        background-color: #3f4373;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #31355a;
+            border-color: #2d3052;
+        }
+    }
+
+    a {
+        color: #3f4373;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.kcFormPasswordVisibilityButtonClass {
+    border: 0.1em solid #3f4373;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+@media (max-width: 600px) {
+    .kcBodyClass {
+        background: unset !important;
+    }
+
+    .kcFormCardClass {
+        min-width: unset !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        padding: 0 1em !important;
+    }
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
