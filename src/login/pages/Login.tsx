@@ -10,6 +10,7 @@ import logo from "../../assets/faimer-logo.jpg";
 import "./Login.css";
 import PrivacyNotice from "./components/PrivacyNotice";
 import TermsAndConditions from "./components/TermsAndConditions.tsx";
+import HelpPopup from "./components/HelpPopup.tsx";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -249,6 +250,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             )}
             {showPolicyNoticeModal && (<PrivacyNotice onClose={() => setShowPolicyNoticeModal(false)} />)}
             {showTermsAndConditionsModal && (<TermsAndConditions onClose={() => setShowTermsAndConditionsModal(false)} />)}
+            <HelpPopup />
         </Template>
     );
 }
