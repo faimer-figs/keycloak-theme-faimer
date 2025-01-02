@@ -4,6 +4,8 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import "./styles.css";
 import logo from "../../assets/faimer-logo.jpg";
+import PolicyOverlay from "./components/PolicyOverlay.tsx";
+import HelpPopup from "./components/HelpPopup.tsx";
 
 export default function LogoutConfirm(props: PageProps<Extract<KcContext, { pageId: "logout-confirm.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -53,6 +55,8 @@ export default function LogoutConfirm(props: PageProps<Extract<KcContext, { page
                     )}
                 </div>
             </div>
+            <PolicyOverlay />
+            <HelpPopup />
         </Template>
     );
 }
