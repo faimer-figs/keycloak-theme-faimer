@@ -237,7 +237,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         <br/>
                         <button className="policiy-button underline" onClick={() => setShowTermsAndConditionsModal(true)}>
                             Terms and Conditions
-                        </button>|
+                        </button>, &nbsp;
                         <button className="policy-button underline" onClick={() => setShowPolicyNoticeModal(true)}>
                             Privacy Notice
                         </button>
