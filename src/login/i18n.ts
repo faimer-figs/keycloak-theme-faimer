@@ -1,9 +1,16 @@
 import { i18nBuilder } from "keycloakify/login";
 import type { ThemeName } from "../kc.gen";
 
-/** @see: https://docs.keycloakify.dev/i18n */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { useI18n, ofTypeI18n } = i18nBuilder.withThemeName<ThemeName>().build();
+const { useI18n, ofTypeI18n } = i18nBuilder
+    .withThemeName<ThemeName>()
+    .withCustomTranslations({
+        en: {
+            "doLogIn": "Log in",
+            "doForgotPassword": "Lost password?",
+        }
+    })
+    .build();
 
 type I18n = typeof ofTypeI18n;
 

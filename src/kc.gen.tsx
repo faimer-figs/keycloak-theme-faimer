@@ -19,6 +19,7 @@ export const kcEnvNames: KcEnvName[] = [];
 
 export const kcEnvDefaults: Record<KcEnvName, string> = {};
 
+import "./index.css"
 /**
  * NOTE: Do not import this type except maybe in your entrypoint.
  * If you need to import the KcContext import it either from src/login/KcContext.ts or src/account/KcContext.ts.
