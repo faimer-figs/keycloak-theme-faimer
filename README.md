@@ -1,60 +1,100 @@
 <p align="center">
-    <i>🚀 <a href="https://keycloakify.dev">Keycloakify</a> v11 starter 🚀</i>
+    <i>🚀 <a href="https://keycloakify.dev">Keycloakify</a> Custom Theme for FAIMER EMR 🚀</i>
     <br/>
     <br/>
 </p>
 
-This starter is based on Vite. There is also [a Webpack based starter](https://github.com/keycloakify/keycloakify-starter-webpack).
+# FAIMER EMR Keycloak Theme
 
-# Quick start
+Custom Keycloak theme built for FAIMER EMR authentication using Keycloakify. This theme provides branded login, account
+management, and email templates aligned with FAIMER's design system.
+
+## Installation
 
 ```bash
-git clone https://github.com/mekomsolutions/keycloak-theme-faimer.git
+git clone git@github.com:faimer-figs/keycloak-theme-faimer.git
 cd keycloak-theme-faimer
-yarn install # Or use an other package manager, just be sure to delete the yarn.lock if you use another package manager.
+npm install
 ```
 
-# Testing the theme locally
+## Development
 
-[Documentation](https://docs.keycloakify.dev/testing-your-theme)
+### Setup Mock Keycloak Instance
 
-# How to customize the theme
+In `src/main.ts`, uncomment:
 
-[Documentation](https://docs.keycloakify.dev/customization-strategies)
+```typescript
+import { getKcContextMock } from "./login/KcPageStory";  // Change the import as needed
 
-# Building the theme
+if (import.meta.env.DEV) {
+    window.kcContext = getKcContextMock({
+        pageId: "login.ftl", // Change pageId as needed
+        overrides: {}
+    });
+}
+```
 
-You need to have [Maven](https://maven.apache.org/) installed to build the theme (Maven >= 3.1.1, Java >= 7).  
-The `mvn` command must be in the $PATH.
+### Run Development Server
 
--   On macOS: `brew install maven`
--   On Debian/Ubuntu: `sudo apt-get install maven`
--   On Windows: `choco install openjdk` and `choco install maven` (Or download from [here](https://maven.apache.org/download.cgi))
+```bash
+npm run dev
+npm run storybook  # View page stories
+```
+
+### Add New Components
+
+```bash
+npx keycloakify add-story   # Generate screen story
+npx keycloakify eject-page  # Eject page TSX
+```
+
+### Add Email Templates
+
+1. Create file in `src/email/html` (e.g. `email-verification.ftl`)
+2. Import `template.ftl`
+3. Add message keys for locales (en, es, fr, km)
+
+## Build
+
+### Prerequisites
+
+- Maven ≥3.1.1
+- Java ≥7
+
+Install Maven:
+
+```bash
+brew install maven              # macOS
+sudo apt-get install maven      # Debian/Ubuntu
+choco install openjdk maven     # Windows
+```
+
+### Build Theme
 
 ```bash
 npm run build-keycloak-theme
 ```
 
-Note that by default Keycloakify generates multiple .jar files for different versions of Keycloak.  
-You can customize this behavior, see documentation [here](https://docs.keycloakify.dev/targeting-specific-keycloak-versions).
+## Additional Features
 
-# Initializing the account theme
+Initialize themes:
 
 ```bash
 npx keycloakify initialize-account-theme
-```
-
-# Initializing the email theme
-
-```bash
 npx keycloakify initialize-email-theme
 ```
 
-# GitHub Actions
+### GitHub Actions
 
-The starter comes with a generic GitHub Actions workflow that builds the theme and publishes
-the jars [as GitHub releases artifacts](https://github.com/keycloakify/keycloakify-starter/releases/tag/v10.0.0).  
-To release a new version **just update the `package.json` version and push**.
+- Builds theme and publishes jars as release artifacts
+- Release: Update `package.json` version and push
+- Enable: Settings > Actions > Workflow permissions > "Read and write permissions"
 
-To enable the workflow go to your fork of this repository on GitHub then navigate to:
-`Settings` > `Actions` > `Workflow permissions`, select `Read and write permissions`.
+## Documentation
+
+- [Testing locally](https://docs.keycloakify.dev/testing-your-theme)
+- [Customization](https://docs.keycloakify.dev/customization-strategies)
+- [Version targeting](https://docs.keycloakify.dev/targeting-specific-keycloak-versions)
+
+A Webpack-based starter is available
+at [keycloakify-starter-webpack](https://github.com/keycloakify/keycloakify-starter-webpack).

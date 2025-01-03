@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import "../Login.css";
+import React, { useState } from "react";
+import "../styles.css";
 
 const HelpPopup = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -7,14 +7,14 @@ const HelpPopup = () => {
     React.useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        const handleClickOutside = (event) => {
-            if (isOpen && event.target.closest('.tooltip-container') === null) {
+        const handleClickOutside = event => {
+            if (isOpen && event.target.closest(".tooltip-container") === null) {
                 setIsOpen(false);
             }
         };
 
-        document.addEventListener('click', handleClickOutside);
-        return () => document.removeEventListener('click', handleClickOutside);
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
     }, [isOpen]);
 
     return (
@@ -22,7 +22,7 @@ const HelpPopup = () => {
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="p-1 text-gray-600 hover:text-gray-800 transition-colors bg-gray-50 rounded-full font-extrabold"
-                style={{ width: 30, color: '#1d2125' }}
+                style={{ width: 30, color: "#1d2125" }}
                 aria-label="Help"
             >
                 ?
@@ -35,7 +35,7 @@ const HelpPopup = () => {
 
                     <div className="relative z-10 bg-white">
                         <div className="pb-3">
-                            <p className="px-3" style={{ color: '#1d2125'}}>
+                            <p className="px-3" style={{ color: "#1d2125" }}>
                                 You are not logged in.
                             </p>
 
@@ -45,7 +45,7 @@ const HelpPopup = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block underline"
-                                    style={{ color: '#1d2125'}}
+                                    style={{ color: "#1d2125" }}
                                 >
                                     Data retention summary
                                 </a>
@@ -55,7 +55,7 @@ const HelpPopup = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block underline"
-                                    style={{ color: '#1d2125'}}
+                                    style={{ color: "#1d2125" }}
                                 >
                                     Get the mobile app
                                 </a>
@@ -93,7 +93,10 @@ const HelpPopup = () => {
                                 </div>
                             </div>
 
-                            <p className="px-3 pt-3 border-t-2 border-t-gray-100" style={{ color: "#1d2125" }}>
+                            <p
+                                className="px-3 pt-3 border-t-2 border-t-gray-100"
+                                style={{ color: "#1d2125" }}
+                            >
                                 Powered by{" "}
                                 <a
                                     href="https://moodle.org"
