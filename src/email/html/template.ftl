@@ -120,7 +120,7 @@
 <body>
     <div class="email-container">
         <div class="header">
-            <img src="${url.resourcesPath}/assets/faimer-logo.jpg" alt="${msg('organizationName')}" />
+            <img src="${url.resourcesPath}/src/assets/faimer-logo.jpg" alt="${msg('organizationName')}" />
         </div>
 
         <div class="content">
