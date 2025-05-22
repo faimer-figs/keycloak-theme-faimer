@@ -36,7 +36,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             doUseDefaultCss={doUseDefaultCss}
             classes={classes}
             displayMessage={!messagesPerField.existsError("username", "password")}
-            headerNode={<img src={logo} alt="Logo" className="logo" />}
+            headerNode={<div><img src={logo} alt="Logo" className="logo" /><h1 style={{ color: "#28809C" }}>FAIMER EHR Learning Module</h1></div>}
             socialProvidersNode={
                 <>
                     {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
