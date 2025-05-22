@@ -12,7 +12,7 @@ export default defineConfig({
             groupId: "com.ozonehis",
             artifactId: "keycloak-theme-faimer",
             keycloakVersionTargets: {
-                "22-to-25": "keycloak-theme-faimer-22-1.0.2.jar",
+                "22-to-25": "keycloak-theme-faimer-22-1.1.0-SNAPSHOT.jar",
                 "all-other-versions": false
             }
         })
