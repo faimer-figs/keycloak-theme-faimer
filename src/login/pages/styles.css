@@ -148,11 +148,21 @@
     line-height: 14px;
 }
 
+.policy-button {
+    color: #000000 !important;
+    .hover {
+        color: #A9A9A9 !important;
+    }
+}
+
 .tooltip-container {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 400;
     line-height: 1.5;
     font-size: .8203125rem;
+    align-items: end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #kc-info {
