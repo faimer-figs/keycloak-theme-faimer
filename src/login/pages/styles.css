@@ -149,10 +149,11 @@
 }
 
 .policy-button {
-    color: #000000 !important;
-    .hover {
-        color: #A9A9A9 !important;
-    }
+    background-color: transparent !important;
+    border: none;
+    text-decoration: underline;
+    outline: none;
+    cursor: pointer;
 }
 
 .tooltip-container {

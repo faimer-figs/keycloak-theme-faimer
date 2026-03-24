@@ -7,7 +7,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import HelpPopup from "./components/HelpPopup.tsx";
 import PolicyOverlay from "./components/PolicyOverlay.tsx";
-import logo from "../../resources/img/faimer-logo.jpg";
+import logo from "../../resources/img/intealth-logo.png";
 import "./styles.css";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
@@ -36,7 +36,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             doUseDefaultCss={doUseDefaultCss}
             classes={classes}
             displayMessage={!messagesPerField.existsError("username", "password")}
-            headerNode={<div><img src={logo} alt="Logo" className="logo" /><h1 style={{ color: "#28809C" }}>FAIMER EHR Learning Module</h1></div>}
+            headerNode={<div><img src={logo} alt="Logo" className="logo" /><h1 style={{ color: "#28809C" }}>Transition to Residency Learning Modules</h1></div>}
             socialProvidersNode={
                 <>
                     {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
