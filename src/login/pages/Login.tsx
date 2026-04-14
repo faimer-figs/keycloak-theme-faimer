@@ -36,7 +36,12 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             doUseDefaultCss={doUseDefaultCss}
             classes={classes}
             displayMessage={!messagesPerField.existsError("username", "password")}
-            headerNode={<div><img src={logo} alt="Logo" className="logo" /><h2 style={{ color: "#28809C" }}>Transition to Residency & Beyond (T2R) Learning Modules</h2></div>}
+            headerNode={
+                <div>
+                    <img src={logo} alt="Logo" className="logo" />
+                    <h2 className="t2r-heading">Transition to Residency & Beyond (T2R) Learning Modules</h2>
+                </div>
+            }
             socialProvidersNode={
                 <>
                     {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
