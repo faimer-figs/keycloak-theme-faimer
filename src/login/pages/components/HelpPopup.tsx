@@ -49,7 +49,7 @@ const HelpPopup = () => {
                                 >
                                     Data retention summary
                                 </a>
-
+                                <br />
                                 <a
                                     href="https://www.openlms.net/open-lms-mobile-app/"
                                     target="_blank"
@@ -59,6 +59,7 @@ const HelpPopup = () => {
                                 >
                                     Get the mobile app
                                 </a>
+                                <br />
 
                                 <div className="">
                                     <a
@@ -70,6 +71,7 @@ const HelpPopup = () => {
                                     >
                                         Policies:
                                     </a>
+                                    <br />
                                     <div className="pl-3 space-y-1 pb-3">
                                         <a
                                             href="https://www.intealth.org/terms/"
@@ -80,6 +82,7 @@ const HelpPopup = () => {
                                         >
                                             Terms and Conditions
                                         </a>
+                                        <br />
                                         <a
                                             href="https://www.intealth.org/privacy/"
                                             target="_blank"
